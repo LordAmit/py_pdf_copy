@@ -5,14 +5,14 @@ import os
 import shlex
 
 content = subprocess.check_output(
-    shlex.split('/usr/bin/xsel --clipboard -o')).decode()
+    shlex.split('/usr/bin/xsel --clipboard -o')).decode('utf-8')
 
 contents = content.splitlines()
-merged  = ""
+merged = ""
 
 for content in contents[1:]:
     merged = merged + " " + content
 merged = contents[0] + merged
 
 process = subprocess.Popen(['xsel', '-bi'], stdin=subprocess.PIPE)
-process.communicate(input=merged.encode())
+process.communicate(input=merged.encode('utf-8'))
