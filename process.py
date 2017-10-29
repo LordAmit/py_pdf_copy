@@ -9,7 +9,7 @@ def common_replace(a):
         a = a.lstrip().replace(chr(8211), "")
         a += "\n"
         print(a)
-
+    a = a.replace("- ", "")
     return a
 
 
@@ -20,9 +20,14 @@ def process_content(content):
     merged = ""
     # print(content)
     for content in contents[1:]:
-    # replacing bullet points
+        # replacing bullet points
 
         content = common_replace(content)
+        if "[" in content:
+
+            merged += "\n"
+            merged = merged + content
+            continue
 
         merged = merged + " " + content
 
