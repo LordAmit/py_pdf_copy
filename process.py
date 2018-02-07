@@ -1,4 +1,4 @@
-def common_replace(a):
+def __common_replace(a):
 
     a = a.replace(chr(8220), '"')
     a = a.replace(chr(8221), '"')
@@ -22,7 +22,7 @@ def process_content(content):
     for content in contents[1:]:
         # replacing bullet points
 
-        content = common_replace(content)
+        content = __common_replace(content)
         if "[" in content:
 
             merged += "\n"
@@ -31,7 +31,7 @@ def process_content(content):
 
         merged = merged + " " + content
 
-    contents[0] = common_replace(contents[0])
+    contents[0] = __common_replace(contents[0])
     merged = contents[0] + merged
 
     return merged
