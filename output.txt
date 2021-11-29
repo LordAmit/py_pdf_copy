@@ -1,0 +1,4 @@
+ Risks (vulnerability/threat pairs) and associated risk levels (output from risk
+ assessment report)  Recommended controls (output from risk assessment report)
+  Risks (vulnerability/threat pairs) and associated risk levels (output from risk
+ assessment report)  Recommended controls (output from risk assessment report)
