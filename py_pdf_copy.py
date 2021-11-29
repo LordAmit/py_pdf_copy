@@ -1,4 +1,4 @@
-#!/usr/bin/python3.6
+#!env python3
 
 import subprocess
 import shlex
@@ -50,6 +50,23 @@ class Clipit(AClipBoardManager):
             input=value)
 
 
+class FileClip(AClipBoardManager):
+
+    def clip_get_content(self) -> str:
+        with open('input.txt', 'r') as file:
+            return file.read().encode('utf-8')
+
+    def clip_set_content(self, value: str):
+        with open('output.txt', 'w') as file:
+
+            file.write(value.decode('utf-8'))
+            file.close()
+
+        # subprocess.Popen(
+        #     ['clipit'], stdin=subprocess.PIPE).communicate(
+        #     input=value)
+
+
 def process_copied_contents(clip_object: AClipBoardManager):
     content = clip_object.clip_get_content().decode("utf-8")
     output = p.process_content(content)
@@ -66,6 +83,10 @@ def main():
     elif os.path.exists('/usr/bin/xclip'):
         print("using xclip")
         clip_object = XClip()
+    elif os.path.exists('input.txt'):
+        print('reading input.txt')
+        clip_object = FileClip()
+        print('writing output.txt')
     else:
         raise AttributeError('Xsel/Clipit not found.')
 
